@@ -6,8 +6,8 @@ void app_main(void)
 {
     Display_config disp_cfg = {
         .dev_addr = 0x3C, //0x3C
-        .height_res = 64,
-        .width_res = 128,
+        .height_res = 64, //default for sh1106
+        .width_res = 128, //defualt for sh1106
         .io_scl = GPIO_NUM_12,
         .io_sda = GPIO_NUM_11,
         .port_num = 1,
@@ -20,11 +20,16 @@ void app_main(void)
         .trig_pin = GPIO_NUM_21,
     };
     
-    ultrasonic_init(&sonic_cfg);
+    // ultrasonic_init(&sonic_cfg);
 
-    err = add_lable(display, "Hello Espressif, Hello LVGL.");
     // err = add_menu(display, "Main");
-
+    
+    char *txt = "Data: ";
+    float data = 0.0;
+    // data = ultrasonic_measure();
+    // Convert float to string 
+    // sprintf(txt, "%.2f", data); // Formats the float to 2 decimal places 
+    // err = add_label(display, txt);
     while(1){
 
         vTaskDelay(pdMS_TO_TICKS(30));

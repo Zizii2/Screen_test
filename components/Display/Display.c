@@ -53,6 +53,9 @@ disp_handle init_display(Display_config *cfg)
     {
         ESP_ERROR_CHECK(esp_lcd_new_panel_sh1107(io_handle, &panel_config, &panel_handle));
     }
+    else if (CONFIG_LCD_CONTROLLER_SSD1603){
+        ESP_ERROR_CHECK(esp_lcd_new_panel_ssd1306(io_handle, &panel_config, &panel_handle));
+    }
     else{
         return NULL;
     }
