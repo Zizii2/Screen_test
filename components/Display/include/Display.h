@@ -10,9 +10,9 @@
 
 #include "esp_lcd_io_i2c.h"
 
-static bool CONFIG_LCD_CONTROLLER_SH1106 = false;
+static bool CONFIG_LCD_CONTROLLER_SH1106 = true;
 static bool CONFIG_LCD_CONTROLLER_SH1107 = false;
-static bool CONFIG_LCD_CONTROLLER_SSD1603 = true;
+static bool CONFIG_LCD_CONTROLLER_SSD1603 = false;
 #include "esp_lcd_sh1107.h"
 #include "esp_lcd_panel_sh1106.h"
 #include "esp_lcd_panel_ssd1306.h"

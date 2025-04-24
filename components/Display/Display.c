@@ -51,9 +51,11 @@ disp_handle init_display(Display_config *cfg)
     }
     else if (CONFIG_LCD_CONTROLLER_SH1107)
     {
+        ESP_LOGI(TAG_SETUP, "Creating handle for sh1107");
         ESP_ERROR_CHECK(esp_lcd_new_panel_sh1107(io_handle, &panel_config, &panel_handle));
     }
     else if (CONFIG_LCD_CONTROLLER_SSD1603){
+        ESP_LOGI(TAG_SETUP, "Creating handle for ssd1306");
         ESP_ERROR_CHECK(esp_lcd_new_panel_ssd1306(io_handle, &panel_config, &panel_handle));
     }
     else{
@@ -94,13 +96,14 @@ disp_handle init_display(Display_config *cfg)
     lv_disp_set_rotation(new_disp, LV_DISP_ROT_180); //LV_DISP_ROT_NONE
     disp_handle handle = (disp_handle)malloc(sizeof(Display_t));
     handle->disp = new_disp;
+    handle->lbl = NULL;
     ESP_LOGI(TAG_SETUP, "Done with setup");
     return handle;
 }
 
 esp_err_t add_label(disp_handle display, char * txt){
     lv_obj_t *scr = lv_disp_get_scr_act(display->disp);
-    lv_obj_t *label;
+    lv_obj_t *label = NULL;
     if(display->lbl == NULL){
         label = lv_label_create(scr);
     }

@@ -13,23 +13,26 @@ void app_main(void)
         .port_num = 1,
     };
     disp_handle display = init_display(&disp_cfg);
+    if(!display){
+        ESP_LOGI("ERROR: ", "Display was not created");
+        return;
+    }
     esp_err_t err;
 
-    ultrasonic_config_t sonic_cfg = {
-        .echo_pin = GPIO_NUM_15,
-        .trig_pin = GPIO_NUM_21,
-    };
+    // ultrasonic_config_t sonic_cfg = {
+    //     .echo_pin = GPIO_NUM_15,
+    //     .trig_pin = GPIO_NUM_21,
+    // };
     
     // ultrasonic_init(&sonic_cfg);
 
     // err = add_menu(display, "Main");
     
-    char *txt = "Data: ";
-    float data = 0.0;
+    char *txt = "hello world!";
     // data = ultrasonic_measure();
     // Convert float to string 
     // sprintf(txt, "%.2f", data); // Formats the float to 2 decimal places 
-    // err = add_label(display, txt);
+    err = add_label(display, txt);
     while(1){
 
         vTaskDelay(pdMS_TO_TICKS(30));
